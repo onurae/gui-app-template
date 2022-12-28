@@ -129,7 +129,7 @@ void GuiApp::Run()
         ImGui_ImplGlfw_NewFrame();
         ImGui::NewFrame();
 
-		// Pure virtual function
+        // Pure virtual function
         Update();
 
         // Rendering
