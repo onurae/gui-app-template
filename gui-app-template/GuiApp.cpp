@@ -54,7 +54,8 @@ GuiApp::GuiApp(const std::string& name)
     io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;       // Enable Keyboard Controls
     //io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;      // Enable Gamepad Controls
     io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;           // Enable Docking
-    io.ConfigDockingWithShift = true;                           // Enable docking with holding shift key
+    io.ConfigDockingWithShift = false;                          // Enable docking with holding shift key
+    io.ConfigWindowsResizeFromEdges = true;                     // Allow resizing windows from their edge.
     io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;         // Enable Multi-Viewport / Platform Windows
     //io.ConfigViewportsNoAutoMerge = true;
     //io.ConfigViewportsNoTaskBarIcon = true;
