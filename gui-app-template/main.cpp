@@ -24,17 +24,23 @@ public:
             ImGui::ShowDemoWindow();
             break;
         case 2:
-            testBasic();
+            TestBasic();
             break;
         case 3:
-            testDock();
+            TestDock();
+            break;
+        case 4:
+            ImPlot::ShowDemoWindow();
+            break;
+        case 5:
+            TestLinePlot();
             break;
         default:
             break;
         }
     }
 
-    void testBasic() const
+    void TestBasic() const
     {
         ImGui::Begin("Basic", nullptr, ImGuiWindowFlags_AlwaysAutoResize);
         ImGui::Text("Hello, world %d", 123);
@@ -44,7 +50,7 @@ public:
         ImGui::End();
     }
 
-    void testDock()
+    void TestDock()
     {
         const ImGuiViewport* viewport = ImGui::GetMainViewport();
         ImGui::SetNextWindowPos(viewport->Pos);
@@ -129,9 +135,39 @@ public:
         ImGui::Text("Text");
         ImGui::End();
     }
+
+    void TestLinePlot()
+    {
+        for (int i = 0; i < 1001; ++i)
+        {
+            xs1[i] = (float)i * 0.001f;
+            ys1[i] = 0.5f + 0.5f * sinf(50 * (xs1[i] + (float)ImGui::GetTime() / 10));
+        }
+        for (int i = 0; i < 20; ++i)
+        {
+            xs2[i] = (float)i / 19.0f;
+            ys2[i] = xs2[i] * xs2[i];
+        }
+        ImGui::SetNextWindowSize(ImVec2(817, 438), ImGuiCond_FirstUseEver);
+        ImGui::Begin("Plotter", nullptr, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoCollapse);
+        if (ImPlot::BeginPlot("Line Plots", ImVec2(800, 400), ImPlotFlags_None))
+        {
+            ImPlot::SetupAxes("x", "y");
+            ImPlot::PlotLine("f(x)", xs1, ys1, 1001);
+            ImPlot::SetNextMarkerStyle(ImPlotMarker_Circle);
+            ImPlot::PlotLine("g(x)", xs2, ys2, 20, ImPlotLineFlags_Segments);
+            ImPlot::EndPlot();
+        }
+        ImGui::End();
+    }
 private:
     bool open = true;
     bool redock = false;
+
+    float xs1[1001];
+    float ys1[1001];
+    double xs2[20];
+    double ys2[20];
 };
 
 int main()

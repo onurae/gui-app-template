@@ -17,6 +17,15 @@ FetchContent_Populate(
     SOURCE_DIR ${PROJECT_SOURCE_DIR}/libs/imgui-docking
 )
 
+# implot library
+include(FetchContent)
+FetchContent_Populate(
+    implot
+    GIT_REPOSITORY https://github.com/epezent/implot.git
+    GIT_TAG 15e494b76a78b44ae2c1b76608ff9bc39a661409 # v0.14
+    SOURCE_DIR ${PROJECT_SOURCE_DIR}/libs/implot
+)
+
 # Executable
 file(GLOB SOURCES ${PROJECT_SOURCE_DIR}/${PROJECT_NAME}/*.?pp)
 file(GLOB SOURCES_IMGUI 
@@ -36,7 +45,14 @@ file(GLOB SOURCES_IMGUI_IMPL
     ${PROJECT_SOURCE_DIR}/libs/imgui-docking/backends/imgui_impl_opengl3.cpp
     ${PROJECT_SOURCE_DIR}/libs/imgui-docking/backends/imgui_impl_opengl3_loader.h
 )
-add_executable(GuiAppTemplate ${SOURCES_IMGUI} ${SOURCES_IMGUI_IMPL} ${SOURCES})
+file(GLOB SOURCES_IMPLOT
+    ${PROJECT_SOURCE_DIR}/libs/implot/implot.h
+    ${PROJECT_SOURCE_DIR}/libs/implot/implot_internal.h
+    ${PROJECT_SOURCE_DIR}/libs/implot/implot.cpp
+    ${PROJECT_SOURCE_DIR}/libs/implot/implot_items.cpp
+    ${PROJECT_SOURCE_DIR}/libs/implot/implot_demo.cpp
+)
+add_executable(GuiAppTemplate ${SOURCES_IMGUI} ${SOURCES_IMGUI_IMPL} ${SOURCES_IMPLOT} ${SOURCES})
 set_target_properties(GuiAppTemplate
     PROPERTIES LINK_FLAGS_DEBUG "/SUBSYSTEM:CONSOLE"
                LINK_FLAGS_RELEASE "/SUBSYSTEM:WINDOWS /ENTRY:mainCRTStartup"
@@ -45,6 +61,7 @@ target_include_directories(GuiAppTemplate
     PRIVATE libs/imgui-docking
     PRIVATE libs/imgui-docking/backends
     PRIVATE libs/imgui-docking/examples/libs/glfw/include
+    PRIVATE libs/implot
 )
 target_link_libraries(GuiAppTemplate
     PRIVATE ${PROJECT_SOURCE_DIR}/libs/imgui-docking/examples/libs/glfw/lib-vc2010-64/glfw3.lib
