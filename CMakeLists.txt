@@ -38,7 +38,7 @@ include(FetchContent)
 FetchContent_Populate(
     material_design_icons
     GIT_REPOSITORY https://github.com/google/material-design-icons.git
-    GIT_TAG b3f05bfbf4329a5b63f50a720f867c2bac163f98 # v4.0.0
+    GIT_TAG 511eea577b20d2b02ad77477750da1e44c66a52c # master Jan 7, 2023
     SOURCE_DIR ${PROJECT_SOURCE_DIR}/libs/utility/material-design-icons
 )
 
