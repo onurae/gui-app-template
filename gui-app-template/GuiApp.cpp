@@ -9,6 +9,7 @@
 
 #include "GuiApp.hpp"
 #include "fonts/RobotoMedium.cpp"
+#include "fonts/RobotoRegular.cpp"
 
 GuiApp::GuiApp(const std::string& name)
 {
@@ -98,8 +99,10 @@ GuiApp::GuiApp(const std::string& name)
     //IM_ASSERT(font != NULL);
 
     float sizePixels = 16.0f;
-    const ImFont* font = io.Fonts->AddFontFromMemoryCompressedTTF(&RobotoMedium_compressed_data, RobotoMedium_compressed_size, sizePixels);
-    IM_ASSERT(font != nullptr);
+    font1 = io.Fonts->AddFontFromMemoryCompressedTTF(&RobotoMedium_compressed_data, RobotoMedium_compressed_size, sizePixels);
+    font2 = io.Fonts->AddFontFromMemoryCompressedTTF(&RobotoRegular_compressed_data, RobotoRegular_compressed_size, sizePixels);
+    IM_ASSERT(font1 != nullptr);
+    IM_ASSERT(font2 != nullptr);
 }
 
 GuiApp::~GuiApp()

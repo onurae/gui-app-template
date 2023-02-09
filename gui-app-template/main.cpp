@@ -1,4 +1,4 @@
-/******************************************************************************************
+﻿/******************************************************************************************
 *                                                                                         *
 *    GUI App Template                                                                     *
 *                                                                                         *
@@ -43,6 +43,11 @@ public:
     void TestBasic() const
     {
         ImGui::Begin("Basic", nullptr, ImGuiWindowFlags_AlwaysAutoResize);
+        ImGui::Text("Hello, world %d", 123);
+        ImGui::Text("This is RobotoMedium %d", 123); // font1, first loaded font is the default font.
+        ImGui::PushFont(font2);
+        ImGui::Text("This is RobotoRegular %d", 123);
+        ImGui::PopFont();
         ImGui::Text("Hello, world %d", 123);
         static float f = 0;
         if (ImGui::Button("Button")) { f = 0.0f; }

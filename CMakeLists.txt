@@ -26,6 +26,22 @@ FetchContent_Populate(
     SOURCE_DIR ${PROJECT_SOURCE_DIR}/libs/implot
 )
 
+# utility libraries
+include(FetchContent)
+FetchContent_Populate(
+    font_roboto
+    GIT_REPOSITORY https://github.com/googlefonts/roboto.git
+    GIT_TAG ab4876f650a4aeb9b661c83fee47f908c739bb70 # v2.138
+    SOURCE_DIR ${PROJECT_SOURCE_DIR}/libs/utility/font-roboto
+)
+include(FetchContent)
+FetchContent_Populate(
+    material_design_icons
+    GIT_REPOSITORY https://github.com/google/material-design-icons.git
+    GIT_TAG b3f05bfbf4329a5b63f50a720f867c2bac163f98 # v4.0.0
+    SOURCE_DIR ${PROJECT_SOURCE_DIR}/libs/utility/material-design-icons
+)
+
 # Executable
 file(GLOB SOURCES ${PROJECT_SOURCE_DIR}/${PROJECT_NAME}/*.?pp)
 file(GLOB SOURCES_IMGUI 
