@@ -8,8 +8,8 @@
 ******************************************************************************************/
 
 #include "GuiApp.hpp"
-#include "fonts/RobotoMedium.cpp"
-#include "fonts/RobotoRegular.cpp"
+#include "utility/RobotoMedium.cpp"
+#include "utility/RobotoRegular.cpp"
 
 GuiApp::GuiApp(const std::string& name)
 {

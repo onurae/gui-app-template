@@ -26,20 +26,12 @@ FetchContent_Populate(
     SOURCE_DIR ${PROJECT_SOURCE_DIR}/libs/implot
 )
 
-# utility libraries
+# utility
 include(FetchContent)
 FetchContent_Populate(
-    font_roboto
-    GIT_REPOSITORY https://github.com/googlefonts/roboto.git
-    GIT_TAG ab4876f650a4aeb9b661c83fee47f908c739bb70 # v2.138
-    SOURCE_DIR ${PROJECT_SOURCE_DIR}/libs/utility/font-roboto
-)
-include(FetchContent)
-FetchContent_Populate(
-    material_design_icons
-    GIT_REPOSITORY https://github.com/google/material-design-icons.git
-    GIT_TAG 511eea577b20d2b02ad77477750da1e44c66a52c # master Jan 7, 2023
-    SOURCE_DIR ${PROJECT_SOURCE_DIR}/libs/utility/material-design-icons
+    imgui-demo-binaries
+    URL https://www.dearimgui.org/binaries/imgui-demo-binaries-20220504.zip
+    SOURCE_DIR ${PROJECT_SOURCE_DIR}/libs/utility/imgui-demo-binaries
 )
 
 # Executable

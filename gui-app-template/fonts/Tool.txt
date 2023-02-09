@@ -1,4 +1,0 @@
-1. download https://www.dearimgui.org/binaries/imgui-demo-binaries-20220504.zip
-2. extract the zip file and copy tools/binary_to_compressed_c.exe file here.
-3. open the command prompt (cmd)
-4. example: binary_to_compressed_c.exe myfont.ttf MyFont > myfont.cpp
