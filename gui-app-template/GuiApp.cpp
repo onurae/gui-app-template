@@ -8,8 +8,6 @@
 ******************************************************************************************/
 
 #include "GuiApp.hpp"
-#include "utility/RobotoMedium.cpp"
-#include "utility/RobotoRegular.cpp"
 
 GuiApp::GuiApp(const std::string& name)
 {
@@ -98,11 +96,40 @@ GuiApp::GuiApp(const std::string& name)
     //ImFont* font = io.Fonts->AddFontFromFileTTF("c:\\Windows\\Fonts\\ArialUni.ttf", 18.0f, NULL, io.Fonts->GetGlyphRangesJapanese());
     //IM_ASSERT(font != NULL);
 
+
+    // ==== Fonts and Icons  ====
+
+    // Add font RobotoMedium
     float sizePixels = 16.0f;
-    font1 = io.Fonts->AddFontFromMemoryCompressedTTF(&RobotoMedium_compressed_data, RobotoMedium_compressed_size, sizePixels);
-    font2 = io.Fonts->AddFontFromMemoryCompressedTTF(&RobotoRegular_compressed_data, RobotoRegular_compressed_size, sizePixels);
-    IM_ASSERT(font1 != nullptr);
-    IM_ASSERT(font2 != nullptr);
+    fontRobotoMedium = io.Fonts->AddFontFromMemoryCompressedTTF(&RobotoMedium_compressed_data, RobotoMedium_compressed_size, sizePixels);
+    IM_ASSERT(fontRobotoMedium != nullptr);
+
+    // Merge icons to font RobotoMedium
+    ImFontConfig config;
+    config.MergeMode = true;
+    config.PixelSnapH = true;
+    config.GlyphOffset = ImVec2(0.0f, 3.0f); // Offset
+    static const ImWchar ranges[] = { 0xe000, 0xf3ff, 0 };
+    fontMaterialIcons = io.Fonts->AddFontFromMemoryCompressedTTF(&MaterialIcons_compressed_data, MaterialIcons_compressed_size, sizePixels, &config, ranges);
+    IM_ASSERT(fontMaterialIcons != nullptr);
+
+    // Add font RobotoRegular
+    fontRobotoRegular = io.Fonts->AddFontFromMemoryCompressedTTF(&RobotoRegular_compressed_data, RobotoRegular_compressed_size, sizePixels);
+    IM_ASSERT(fontRobotoRegular != nullptr);
+
+    // Add large font
+    sizePixels = 20.0f;
+    fontLarge = io.Fonts->AddFontFromMemoryCompressedTTF(&RobotoMedium_compressed_data, RobotoMedium_compressed_size, sizePixels);
+    IM_ASSERT(fontLarge != nullptr);
+
+    // Merge large icons to large font
+    ImFontConfig configLarge;
+    configLarge.MergeMode = true;
+    configLarge.PixelSnapH = true;
+    configLarge.GlyphOffset = ImVec2(0.0f, 4.0f); // Offset
+    static const ImWchar rangesLarge[] = { 0xe000, 0xf3ff, 0 };
+    iconLarge = io.Fonts->AddFontFromMemoryCompressedTTF(&MaterialIcons_compressed_data, MaterialIcons_compressed_size, sizePixels, &configLarge, rangesLarge);
+    IM_ASSERT(iconLarge != nullptr);
 }
 
 GuiApp::~GuiApp()

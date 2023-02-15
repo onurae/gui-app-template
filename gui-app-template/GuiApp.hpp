@@ -26,6 +26,10 @@
 #pragma comment(lib, "legacy_stdio_definitions")
 #endif
 
+#include "utility/RobotoMedium.cpp"
+#include "utility/RobotoRegular.cpp"
+#include "utility/MaterialIcons.cpp"
+
 class GuiApp
 {
 public:
@@ -40,8 +44,11 @@ private:
     ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
 
 protected:
-    ImFont* font1;
-    ImFont* font2;
+    ImFont* fontRobotoMedium;
+    ImFont* fontRobotoRegular;
+    ImFont* fontMaterialIcons;
+    ImFont* fontLarge;
+    ImFont* iconLarge;
 };
 
 #endif /* GUIAPP_HPP */

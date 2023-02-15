@@ -4,3 +4,4 @@
 
 binary_to_compressed_c.exe Roboto-2.138/Roboto-Medium.ttf RobotoMedium > RobotoMedium.cpp
 binary_to_compressed_c.exe Roboto-2.138/Roboto-Regular.ttf RobotoRegular > RobotoRegular.cpp
+binary_to_compressed_c.exe MaterialIcons-7Jan23/MaterialIcons-Regular.ttf MaterialIcons > MaterialIcons.cpp

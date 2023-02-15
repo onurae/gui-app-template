@@ -44,13 +44,20 @@ public:
     {
         ImGui::Begin("Basic", nullptr, ImGuiWindowFlags_AlwaysAutoResize);
         ImGui::Text("Hello, world %d", 123);
-        ImGui::Text("This is RobotoMedium %d", 123); // font1, first loaded font is the default font.
-        ImGui::PushFont(font2);
+        ImGui::Text("This is RobotoMedium %d", 123); // the first loaded font gets used by default
+        ImGui::PushFont(fontRobotoRegular); // use ImGui::PushFont()/ImGui::PopFont() to change the font at runtime
         ImGui::Text("This is RobotoRegular %d", 123);
         ImGui::PopFont();
-        ImGui::Text("Hello, world %d", 123);
+        ImGui::Text(u8"\uefe1 Hello % d", 123);
+        ImGui::Text(u8"\uea16 Hello % d", 123);
+
+        ImGui::PushFont(fontLarge);
+        ImGui::Text(u8"\uf011 This is RobotoMedium24");
+        ImGui::PopFont();
+
+        ImGui::Spacing();
         static float f = 0;
-        if (ImGui::Button("Button")) { f = 0.0f; }
+        if (ImGui::Button(u8"\ue1c4 Run")) { f = 0.0f; }
         ImGui::SliderFloat("float", &f, 0.0f, 1.0f);
         ImGui::End();
     }
