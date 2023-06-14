@@ -18,7 +18,7 @@ public:
 
     void Update() override
     {
-        switch (2)
+        switch (1)
         {
         case 1:
             ImGui::ShowDemoWindow();

@@ -18,7 +18,6 @@ FetchContent_Populate(
 )
 
 # implot library
-include(FetchContent)
 FetchContent_Populate(
     implot
     GIT_REPOSITORY https://github.com/epezent/implot.git
@@ -27,16 +26,13 @@ FetchContent_Populate(
 )
 
 # utility
-include(FetchContent)
 FetchContent_Populate(
     imgui-demo-binaries
     URL https://www.dearimgui.org/binaries/imgui-demo-binaries-20220504.zip
     SOURCE_DIR ${PROJECT_SOURCE_DIR}/libs/utility/imgui-demo-binaries
 )
 
-# Executable
-file(GLOB SOURCES ${PROJECT_SOURCE_DIR}/${PROJECT_NAME}/*.?pp)
-file(GLOB SOURCES_IMGUI 
+file(GLOB SOURCES_IMGUI
     ${PROJECT_SOURCE_DIR}/libs/imgui-docking/imconfig.h
     ${PROJECT_SOURCE_DIR}/libs/imgui-docking/imgui.h
     ${PROJECT_SOURCE_DIR}/libs/imgui-docking/imgui_internal.h
@@ -60,18 +56,39 @@ file(GLOB SOURCES_IMPLOT
     ${PROJECT_SOURCE_DIR}/libs/implot/implot_items.cpp
     ${PROJECT_SOURCE_DIR}/libs/implot/implot_demo.cpp
 )
-add_executable(GuiAppTemplate ${SOURCES_IMGUI} ${SOURCES_IMGUI_IMPL} ${SOURCES_IMPLOT} ${SOURCES})
-set_target_properties(GuiAppTemplate
-    PROPERTIES LINK_FLAGS_DEBUG "/SUBSYSTEM:CONSOLE"
-               LINK_FLAGS_RELEASE "/SUBSYSTEM:WINDOWS /ENTRY:mainCRTStartup"
-)
-target_include_directories(GuiAppTemplate
-    PRIVATE libs/imgui-docking
-    PRIVATE libs/imgui-docking/backends
-    PRIVATE libs/imgui-docking/examples/libs/glfw/include
-    PRIVATE libs/implot
-)
-target_link_libraries(GuiAppTemplate
-    PRIVATE ${PROJECT_SOURCE_DIR}/libs/imgui-docking/examples/libs/glfw/lib-vc2010-64/glfw3.lib
-    PRIVATE opengl32.lib
-)
+
+if(CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR)
+    # Executable
+    file(GLOB SOURCES ${PROJECT_SOURCE_DIR}/${PROJECT_NAME}/*.?pp)
+
+    add_executable(GuiAppTemplate ${SOURCES_IMGUI} ${SOURCES_IMGUI_IMPL} ${SOURCES_IMPLOT} ${SOURCES})
+    set_target_properties(GuiAppTemplate
+        PROPERTIES LINK_FLAGS_DEBUG "/SUBSYSTEM:CONSOLE"
+                LINK_FLAGS_RELEASE "/SUBSYSTEM:WINDOWS /ENTRY:mainCRTStartup"
+    )
+    target_include_directories(GuiAppTemplate
+        PRIVATE libs/imgui-docking
+        PRIVATE libs/imgui-docking/backends
+        PRIVATE libs/imgui-docking/examples/libs/glfw/include
+        PRIVATE libs/implot
+    )
+    target_link_libraries(GuiAppTemplate
+        PRIVATE ${PROJECT_SOURCE_DIR}/libs/imgui-docking/examples/libs/glfw/lib-vc2010-64/glfw3.lib
+        PRIVATE opengl32.lib
+    )
+else()
+    # Static library
+    file(GLOB SOURCES ${PROJECT_NAME}/*.?pp)
+    list(FILTER SOURCES EXCLUDE REGEX ".test.cpp")
+    add_library(GuiAppTemplate STATIC ${SOURCES_IMGUI} ${SOURCES_IMGUI_IMPL} ${SOURCES_IMPLOT} ${SOURCES})
+    target_include_directories(GuiAppTemplate
+        PRIVATE libs/imgui-docking
+        PRIVATE libs/imgui-docking/backends
+        PRIVATE libs/imgui-docking/examples/libs/glfw/include
+        PRIVATE libs/implot
+    )
+    target_link_libraries(GuiAppTemplate
+        PRIVATE ${PROJECT_SOURCE_DIR}/libs/imgui-docking/examples/libs/glfw/lib-vc2010-64/glfw3.lib
+        PRIVATE opengl32.lib
+    )
+endif()
