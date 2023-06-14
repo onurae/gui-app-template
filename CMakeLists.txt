@@ -82,13 +82,13 @@ else()
     list(FILTER SOURCES EXCLUDE REGEX ".test.cpp")
     add_library(GuiAppTemplate STATIC ${SOURCES_IMGUI} ${SOURCES_IMGUI_IMPL} ${SOURCES_IMPLOT} ${SOURCES})
     target_include_directories(GuiAppTemplate
-        PRIVATE libs/imgui-docking
-        PRIVATE libs/imgui-docking/backends
-        PRIVATE libs/imgui-docking/examples/libs/glfw/include
-        PRIVATE libs/implot
+        PUBLIC libs/imgui-docking
+        PUBLIC libs/imgui-docking/backends
+        PUBLIC libs/imgui-docking/examples/libs/glfw/include
+        PUBLIC libs/implot
     )
     target_link_libraries(GuiAppTemplate
-        PRIVATE ${PROJECT_SOURCE_DIR}/libs/imgui-docking/examples/libs/glfw/lib-vc2010-64/glfw3.lib
-        PRIVATE opengl32.lib
+        PUBLIC ${PROJECT_SOURCE_DIR}/libs/imgui-docking/examples/libs/glfw/lib-vc2010-64/glfw3.lib
+        PUBLIC opengl32.lib
     )
 endif()
