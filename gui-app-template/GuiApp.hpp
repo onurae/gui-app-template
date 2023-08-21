@@ -34,12 +34,17 @@
 class GuiApp
 {
 public:
-    explicit GuiApp(const std::string& name);
+    explicit GuiApp(std::string_view name);
     virtual ~GuiApp();
     void Run();
     virtual void Update() = 0;
+    
+    void SetTitle(std::string_view name, bool asteriskFlag);
+    std::string GetTitle() const { return title; }
 
 private:
+    std::string title{ "" };
+    std::string appName{ "" };
     static void glfw_error_callback(int error, const char* description);
     GLFWwindow* window;
     ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);

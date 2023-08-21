@@ -9,7 +9,7 @@
 
 #include "GuiApp.hpp"
 
-GuiApp::GuiApp(const std::string& name)
+GuiApp::GuiApp(std::string_view name) : appName(name)
 {
     // Setup window
     glfwSetErrorCallback(glfw_error_callback);
@@ -40,7 +40,7 @@ GuiApp::GuiApp(const std::string& name)
 #endif
 
     // Create window with graphics context
-    window = glfwCreateWindow(1280, 720, name.c_str(), nullptr, nullptr);
+    window = glfwCreateWindow(1280, 720, appName.c_str(), nullptr, nullptr);
     if (window == nullptr)
         std::exit(1);
     glfwMakeContextCurrent(window);
@@ -193,4 +193,11 @@ void GuiApp::Run()
 
         glfwSwapBuffers(window);
     }
+}
+
+void GuiApp::SetTitle(std::string_view name, bool asteriskFlag)
+{
+    title = name;
+    std::string n = title + (asteriskFlag ? "*" : "") + " - " + appName;
+    glfwSetWindowTitle(window, n.c_str());
 }
