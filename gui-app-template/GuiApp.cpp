@@ -195,9 +195,19 @@ void GuiApp::Run()
     }
 }
 
-void GuiApp::SetTitle(std::string_view name, bool asteriskFlag)
+void GuiApp::SetTitle(std::string_view name)
 {
     title = name;
-    std::string n = title + (asteriskFlag ? "*" : "") + " - " + appName;
-    glfwSetWindowTitle(window, n.c_str());
+    UpdateTitle();
+}
+
+void GuiApp::SetAsterisk(bool flag)
+{
+    titleAsterisk = flag;
+    UpdateTitle();
+}
+
+void GuiApp::UpdateTitle()
+{
+    glfwSetWindowTitle(window, (title + (titleAsterisk ? "*" : "") + " - " + appName).c_str());
 }

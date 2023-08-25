@@ -39,11 +39,15 @@ public:
     void Run();
     virtual void Update() = 0;
     
-    void SetTitle(std::string_view name, bool asteriskFlag);
+    void SetTitle(std::string_view name);
+    void SetAsterisk(bool flag);
     std::string GetTitle() const { return title; }
+    bool GetAsterisk() const { return titleAsterisk; }
 
 private:
+    void UpdateTitle();
     std::string title{ "" };
+    bool titleAsterisk = false;
     std::string appName{ "" };
     static void glfw_error_callback(int error, const char* description);
     GLFWwindow* window;
