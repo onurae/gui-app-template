@@ -36,11 +36,13 @@ file(GLOB SOURCES_IMGUI
     ${PROJECT_SOURCE_DIR}/libs/imgui-docking/imconfig.h
     ${PROJECT_SOURCE_DIR}/libs/imgui-docking/imgui.h
     ${PROJECT_SOURCE_DIR}/libs/imgui-docking/imgui_internal.h
+    ${PROJECT_SOURCE_DIR}/libs/imgui-docking/misc/cpp/imgui_stdlib.h
     ${PROJECT_SOURCE_DIR}/libs/imgui-docking/imgui.cpp
     ${PROJECT_SOURCE_DIR}/libs/imgui-docking/imgui_demo.cpp
     ${PROJECT_SOURCE_DIR}/libs/imgui-docking/imgui_draw.cpp
     ${PROJECT_SOURCE_DIR}/libs/imgui-docking/imgui_tables.cpp
     ${PROJECT_SOURCE_DIR}/libs/imgui-docking/imgui_widgets.cpp
+    ${PROJECT_SOURCE_DIR}/libs/imgui-docking/misc/cpp/imgui_stdlib.cpp
 )
 file(GLOB SOURCES_IMGUI_IMPL
     ${PROJECT_SOURCE_DIR}/libs/imgui-docking/backends/imgui_impl_glfw.h
@@ -71,6 +73,7 @@ if(CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR)
         PRIVATE libs/imgui-docking/backends
         PRIVATE libs/imgui-docking/examples/libs/glfw/include
         PRIVATE libs/implot
+        PRIVATE libs/imgui-docking/misc/cpp
     )
     target_link_libraries(GuiAppTemplate
         PRIVATE ${PROJECT_SOURCE_DIR}/libs/imgui-docking/examples/libs/glfw/lib-vc2010-64/glfw3.lib
@@ -86,6 +89,7 @@ else()
         PUBLIC libs/imgui-docking/backends
         PUBLIC libs/imgui-docking/examples/libs/glfw/include
         PUBLIC libs/implot
+        PRIVATE libs/imgui-docking/misc/cpp
     )
     target_link_libraries(GuiAppTemplate
         PUBLIC ${PROJECT_SOURCE_DIR}/libs/imgui-docking/examples/libs/glfw/lib-vc2010-64/glfw3.lib

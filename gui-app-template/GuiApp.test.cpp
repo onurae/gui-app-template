@@ -8,7 +8,6 @@
 ******************************************************************************************/
 
 #include "GuiApp.hpp"
-#include "imgui_internal.h"
 
 class MyApp : public GuiApp
 {
@@ -59,6 +58,10 @@ public:
         static float f = 0;
         if (ImGui::Button(u8"\ue1c4 Run")) { f = 0.0f; }
         ImGui::SliderFloat("float", &f, 0.0f, 1.0f);
+
+        static std::string inputStr = "test";
+        ImGui::InputText("std::string", &inputStr);
+        ImGui::Text(inputStr.c_str());
         ImGui::End();
     }
 

@@ -130,6 +130,9 @@ GuiApp::GuiApp(std::string_view name) : appName(name)
     static const ImWchar rangesLarge[] = { 0xe000, 0xf3ff, 0 };
     iconLarge = io.Fonts->AddFontFromMemoryCompressedTTF(&MaterialIcons_compressed_data, MaterialIcons_compressed_size, sizePixels, &configLarge, rangesLarge);
     IM_ASSERT(iconLarge != nullptr);
+
+    // Path to ini file
+    io.IniFilename = "layout.ini";
 }
 
 GuiApp::~GuiApp()
