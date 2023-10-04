@@ -89,7 +89,7 @@ else()
         PUBLIC libs/imgui-docking/backends
         PUBLIC libs/imgui-docking/examples/libs/glfw/include
         PUBLIC libs/implot
-        PRIVATE libs/imgui-docking/misc/cpp
+        PUBLIC libs/imgui-docking/misc/cpp
     )
     target_link_libraries(GuiAppTemplate
         PUBLIC ${PROJECT_SOURCE_DIR}/libs/imgui-docking/examples/libs/glfw/lib-vc2010-64/glfw3.lib
