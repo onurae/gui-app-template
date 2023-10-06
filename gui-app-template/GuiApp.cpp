@@ -182,7 +182,7 @@ void GuiApp::Run()
         Update();
 
         // Exit
-        if (attemptToClose == true && timeToClose == true)
+        if (timeToClose == true)
         {
             glfwSetWindowShouldClose(window, true);
         }
