@@ -17,7 +17,7 @@ public:
 
     void Update() override
     {
-        switch (1)
+        switch (2)
         {
         case 1:
             ImGui::ShowDemoWindow();
@@ -62,6 +62,12 @@ public:
         static std::string inputStr = "test";
         ImGui::InputText("std::string", &inputStr);
         ImGui::Text(inputStr.c_str());
+
+        ImGui::Checkbox("AttemptToClose", &attemptToClose);
+        if (ImGui::Button("TimeToClose"))
+        {
+            timeToClose = true;
+        }
         ImGui::End();
     }
 

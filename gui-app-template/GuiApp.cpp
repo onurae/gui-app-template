@@ -46,6 +46,9 @@ GuiApp::GuiApp(std::string_view name) : appName(name)
     glfwMakeContextCurrent(window);
     glfwSwapInterval(1); // Enable vsync
 
+    // Close callback
+    glfwSetWindowCloseCallback(window, window_close_callback);
+
     // Setup Dear ImGui context
     IMGUI_CHECKVERSION();
     ImGui::CreateContext();
@@ -152,6 +155,12 @@ void GuiApp::glfw_error_callback(int error, const char * description)
     fprintf(stderr, "Glfw Error %d: %s\n", error, description);
 }
 
+void GuiApp::window_close_callback(GLFWwindow* window)
+{
+    glfwSetWindowShouldClose(window, false);
+    attemptToClose = true;
+}
+
 void GuiApp::Run()
 {
     const ImGuiIO& io = ImGui::GetIO();
@@ -171,6 +180,12 @@ void GuiApp::Run()
 
         // Pure virtual function
         Update();
+
+        // Exit
+        if (attemptToClose == true && timeToClose == true)
+        {
+            glfwSetWindowShouldClose(window, true);
+        }
 
         // Rendering
         ImGui::Render();
