@@ -1,4 +1,4 @@
-1. copy "gui-app-template\libs\utility\imgui-demo-binaries\tools\binary_to_compressed_c.exe" file here.
+1. after building, the binary_to_compressed_c.exe will be created here.
 2. open the command prompt (cmd)
 3. example: binary_to_compressed_c.exe myfont.ttf MyFont > myfont.cpp
 

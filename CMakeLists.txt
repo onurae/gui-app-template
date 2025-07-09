@@ -25,6 +25,13 @@ FetchContent_Populate(
     SOURCE_DIR ${PROJECT_SOURCE_DIR}/libs/implot
 )
 
+# binary to compressed c
+add_executable(BinaryToCompressedC ${PROJECT_SOURCE_DIR}/libs/imgui-docking/misc/fonts/binary_to_compressed_c.cpp)
+set(DEST_FOLDER ${PROJECT_SOURCE_DIR}/gui-app-template/utility)
+add_custom_command(TARGET BinaryToCompressedC POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_FILE:BinaryToCompressedC> ${DEST_FOLDER}/binary_to_compressed_c.exe
+)
+
 file(GLOB SOURCES_IMGUI
     ${PROJECT_SOURCE_DIR}/libs/imgui-docking/imconfig.h
     ${PROJECT_SOURCE_DIR}/libs/imgui-docking/imgui.h
