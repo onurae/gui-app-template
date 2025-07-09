@@ -25,13 +25,6 @@ FetchContent_Populate(
     SOURCE_DIR ${PROJECT_SOURCE_DIR}/libs/implot
 )
 
-# utility
-FetchContent_Populate(
-    imgui-demo-binaries
-    URL https://www.dearimgui.org/binaries/imgui-demo-binaries-20220504.zip
-    SOURCE_DIR ${PROJECT_SOURCE_DIR}/libs/utility/imgui-demo-binaries
-)
-
 file(GLOB SOURCES_IMGUI
     ${PROJECT_SOURCE_DIR}/libs/imgui-docking/imconfig.h
     ${PROJECT_SOURCE_DIR}/libs/imgui-docking/imgui.h
